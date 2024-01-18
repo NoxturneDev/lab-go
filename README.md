@@ -3,5 +3,6 @@ This is my personal project that contains all the thing I wanna try before imple
 Feel free to play around with it
 
 ## On progress
-1. GRPC
+1. GOLANG FUNDAMENTALS
 2. GO ROUTINES
+3. GRPC
