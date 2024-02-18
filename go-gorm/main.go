@@ -1,1 +1,5 @@
-package go_gorm
+package main
+
+func main(){
+
+}

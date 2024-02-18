@@ -122,7 +122,7 @@ func main() {
 		return c.JSON(http.StatusOK, struct {
 			Message string
 		}{
-			Message: "Hai mantap",
+			Message: "Hai i love programming so much 💓 and im not Gei the fuck",
 		})
 	})
 
@@ -130,7 +130,7 @@ func main() {
 		return c.JSON(http.StatusOK, struct {
 			Message string
 		}{
-			Message: "Test hot reload",
+			Message: "Test 2 hot realod",
 		})
 	})
 

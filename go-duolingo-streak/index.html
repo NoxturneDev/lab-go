@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keyboard Controlled Square with Random Square</title>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+
+    <script>
+      const doc = window.document;
+      const canvas = doc.getElementById('canvas');
+      canvas.width = 500;
+      canvas.height = 500;
+      canvas.style.backgroundColor = 'black';
+      const ctx = canvas.getContext('2d');
+
+      let playerX = canvas.width / 2;
+      let playerY = canvas.height / 2;
+      let playerDX = 0; // velocity in x-direction for the player
+      let playerDY = 0; // velocity in y-direction for the player
+      const playerSpeed = 3; // speed of player movement
+
+      let squareX, squareY; // position of the random square
+
+      function init() {
+        generateRandomSquare();
+        draw();
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw player
+        ctx.fillStyle = 'green';
+        ctx.fillRect(playerX, playerY, 50, 50);
+
+        // Draw random square
+        ctx.fillStyle = 'red';
+        ctx.fillRect(squareX, squareY, 50, 50);
+
+        // Update player position based on velocity
+        playerX += playerDX;
+        playerY += playerDY;
+
+        // Loop animation
+        requestAnimationFrame(draw);
+      }
+
+      // Listen for keydown and keyup events to control player movement
+      window.addEventListener('keydown', e => {
+        switch (e.key.toLowerCase()) {
+          case 'w':
+            playerDY = -playerSpeed;
+            break;
+          case 'a':
+            playerDX = -playerSpeed;
+            break;
+          case 's':
+            playerDY = playerSpeed;
+            break;
+          case 'd':
+            playerDX = playerSpeed;
+            break;
+        }
+      });
+
+      window.addEventListener('keyup', e => {
+        switch (e.key.toLowerCase()) {
+          case 'w':
+          case 's':
+            playerDY = 0;
+            break;
+          case 'a':
+          case 'd':
+            playerDX = 0;
+            break;
+        }
+      });
+
+      // Function to generate random position for the square
+      function generateRandomSquare() {
+        squareX = Math.random() * (canvas.width - 50);
+        squareA = Math.random() * (canvas.width - 50);
+        squareY = Math.random() * (canvas.height - 50);
+      }
+
+      init();
+    </script>
+  </body>
+</html>

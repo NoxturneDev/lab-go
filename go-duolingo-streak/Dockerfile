@@ -20,5 +20,5 @@ COPY ./ ./
 EXPOSE 8080
 #CMD ["./bin/server/server"]
 #
-ENTRYPOINT CompileDaemon -build="go build -o /bin/server" -command="/bin/server" -build-dir=/app
+ENTRYPOINT CompileDaemon -build="go build -o /server" -command="/server" -polling=true
 
