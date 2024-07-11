@@ -56,12 +56,24 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	w.Write(response)
 }
 
+func enableCors(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type, Accept")
+		next.ServeHTTP(w, r)
+	})
+}
+
 func main() {
 	mux := http.NewServeMux()
+
+	var handler http.Handler = mux
+	handler = enableCors(handler)
 
 	mux.HandleFunc("GET /api/users", GetUsers)
 	mux.HandleFunc("POST /api/user", CreateUser)
 
-	println("Server is running on port 8080")
+	println("server start at:8080")
 	http.ListenAndServe(":8080", mux)
 }
